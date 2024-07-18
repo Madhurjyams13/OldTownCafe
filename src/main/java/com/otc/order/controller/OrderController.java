@@ -1,0 +1,19 @@
+package com.otc.order.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class OrderController {
+
+	@RequestMapping(value="/test" , method = RequestMethod.GET)
+	public String Test()
+	{
+		
+		System.out.println("Controller Hit");
+		
+		return "Success on Docker";
+	}
+}
