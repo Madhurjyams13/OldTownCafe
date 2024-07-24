@@ -9,7 +9,7 @@ public class OldTownCafe {
 	public static void main(String[] args) {
 		SpringApplication.run(OldTownCafe.class, args);
 		
-		System.out.println("Old Town Cafe Application Has Started");
+		System.out.println("Old Town Cafe Application Has Started on Docker");
 	}
 
 }
