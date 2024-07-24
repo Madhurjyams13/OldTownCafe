@@ -1,0 +1,16 @@
+version: '3'
+services:
+    mariadb:
+        image: mariadb:10
+        container_name: mariadb
+        command: --default-authentication-plugin=mysql_native_password
+        ports:
+            - 3307:3306
+        environment:
+            - MARIADB_ROOT_USERNAME=root
+            - MARIADB_ROOT_PASSWORD=Root@5
+        volumes:
+            - db-data:/var/lib/mysql
+volumes:
+    db-data:
+        driver: local
