@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset = "utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>BTC FMIS - Login</title>
+      
+         <link rel="stylesheet" th:href="@{/css/style.css}">
+   
+      <link rel="stylesheet" th:href="@{/css/bootstrap-icons.css}">
+      
+       <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+      
+        <link rel="stylesheet" th:href="@{/css/boxicons.min.css}">
+         <link rel="stylesheet" th:href="@{/css/glightbox.min.css}">
+      <link rel="stylesheet" th:href="@{/css/remixicon.css}">
+       <link rel="stylesheet" th:href="@{/css/swiper-bundle.min.css}">
+      
+    
+        <script th:src="@{/js/jquery.min.js}"></script>
+      <!-- 
+      <script th:src="@{/js/bootstrap.min.js}"></script>
+      <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+      <script th:src="@{/js/purecounter_vanilla.js}"></script>
+      <script th:src="@{/js/glightbox.min.js}"></script>
+      <script th:src="@{/js/isotope.pkgd.min.js}"></script>
+      <script th:src="@{/js/swiper-bundle.min.js}"></script>
+        -->
+      <script th:src="@{/js/angular.min.js}"></script>
+      
+       <link rel="stylesheet" th:href="@{/font-awesome/css/font-awesome.css}" />
+       
+       <link rel="stylesheet" th:href="@{/font-awesome/css/font-awesome.min.css}" />
+ <!--   <link th:href="@{/assets/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+  <link th:href="@{/assets/vendor/bootstrap-icons/bootstrap-icons.css}" rel="stylesheet">  
+  <link th:href="@{/assets/vendor/boxicons/css/boxicons.min.css}" rel="stylesheet"> 
+  <link th:href="@{/assets/vendor/glightbox/css/glightbox.min.css}" rel="stylesheet">
+  <link th:href="@{/assets/vendor/remixicon/remixicon.css}" rel="stylesheet">  
+  <link th:href="@{/assets/vendor/swiper/swiper-bundle.min.css}" rel="stylesheet"> -->
+
+  
+      
+    
+
+  <!-- Template Main JS File 
+  <script th:src="@{/assets/js/main.js}"></script> -->
+      
+    <style>
+    
+    
+body {
+ 
+  background: #ddd; height:100%;overflow-x: hidden;}	
+.text{color:brown;font-size:220px;text-align:center;}
+.open{color:green;background:#000;padding:10px;border-radius:20px;
+}    
+    
+    .container-preloader {
+	align-items:center; cursor:none; display:flex; height:90%;
+  justify-content:center; position:fixed; left:0; top:0; width:100%; z-index:900;
+}
+.container-preloader .animation-preloader {
+	position:absolute; z-index: 100;}
+/* Spinner Loading */
+.container-preloader .animation-preloader .spinner {
+  animation: spinner 1s infinite linear;
+	border-radius: 50%;  border: 10px solid rgba(0, 0, 0, 0.2);
+  border-top-color: green; /* It is not in alphabetical order so that you do not overwrite it */
+  height: 6em;  margin: 0 auto 3.5em auto; width: 6em;
+}
+/* Loading text */
+.container-preloader .animation-preloader .txt-loading {
+  font: bold 5em 'Montserrat', sans-serif;
+	text-align: center;	user-select: none;
+}
+.container-preloader .animation-preloader .txt-loading .characters:before {
+  animation: characters 4s infinite;  color: orange;
+  content: attr(preloader-text);  left: 0;
+  opacity: 0;  position: absolute;  top: 0;
+  transform: rotateY(-90deg);
+}
+.container-preloader .animation-preloader .txt-loading .characters {
+	color: rgba(0, 0, 0, 0.2);	position: relative;
+}
+.container-preloader .animation-preloader .txt-loading .characters:nth-child(2):before {
+  animation-delay: 0.2s;
+}
+.container-preloader .animation-preloader .txt-loading .characters:nth-child(3):before {
+  animation-delay: 0.4s;
+}
+.container-preloader .animation-preloader .txt-loading .characters:nth-child(4):before {
+  animation-delay: 0.6s;
+}
+.container-preloader .animation-preloader .txt-loading .characters:nth-child(5):before {
+  animation-delay: 0.8s;
+}
+.container-preloader .animation-preloader .txt-loading .characters:nth-child(6):before {
+  animation-delay: 1s;
+}
+.container-preloader .animation-preloader .txt-loading .characters:nth-child(7):before {
+  animation-delay: 1.2s;
+}
+.container-preloader .loader-section {
+  background-color: #ffffff;  height: 100%;
+  position: fixed;  top: 0;  width: calc(50% + 1px);
+}
+.container-preloader .loader-section.section-left {
+  left: 0;
+}
+.container-preloader .loader-section.section-right {
+  right: 0;
+}
+/* Fade effect on loading animation */
+.loaded .animation-preloader {
+  opacity: 0;
+  transition: 0.3s ease-out;
+}
+/* Curtain effect */
+.loaded .loader-section.section-left {
+  transform: translateX(-101%);
+  transition: 0.7s 0.3s all cubic-bezier(0.1, 0.1, 0.1, 1.000);
+}
+.loaded .loader-section.section-right {
+  transform: translateX(101%);
+  transition: 0.7s 0.3s all cubic-bezier(0.1, 0.1, 0.1, 1.000);
+}
+/* Animation of the preloader */
+@keyframes spinner {
+to {
+	transform: rotateZ(360deg);
+}}
+/* Animation of letters loading from the preloader */
+@keyframes characters {
+  0%,
+  75%,
+  100% {
+ opacity: 0;
+ transform: rotateY(-90deg);
+  }
+  25%,
+  50% {
+    opacity: 1;
+    transform: rotateY(0deg);
+  }}
+/* Laptop size back (laptop, tablet, cell phone) */
+@media screen and (max-width: 767px) {
+	/* Preloader */
+	/* Spinner Loading */	
+	.container-preloader .animation-preloader .spinner {
+	height: 8em;
+	width: 8em;
+	}
+	/* Text Loading */
+	.container-preloader .animation-preloader .txt-loading {
+	  font: bold 3.5em 'Montserrat', sans-serif;
+	}}
+@media screen and (max-width: 500px) {
+	/* Prelaoder */
+	/* Spinner Loading */
+	.container-preloader .animation-preloader .spinner {
+	height: 7em;
+	width: 7em;
+	}
+	/*Loading text */
+	.container-preloader .animation-preloader .txt-loading {
+	  font: bold 2em 'Montserrat', sans-serif;
+	}}
+.origin{text-decoration:none;
+font-size:35px;}
+    
+  .curser {
+  color: transparent;
+  text-shadow: 0 0 0 #2196f3;
+
+cursor: none;
+      
+ 
+}  
+
+#notificationCardBody {
+  height: 37vh; 
+}
+
+#notificationCardBody marquee {
+  height: 100%; 
+}
+    </style>
+      
+   </head>
+    	
+   	<body class="hold-transition login-page">
+   
+  
+   	
+   
+   	
+   	
+   	
+   	<section id="hero" >
+    <div class="hero-container" >
+    
+    <div class="row" style="width: 100%; margin-top: -15vh;">
+    <div class="col-md-2">
+       <img  class="img-responsive" src="images/logo.png"  height="180vh">  
+    
+    </div>
+    <div class="col-md-8" style="border-bottom: 2px solid black;"> 
+    
+    	<img  class="img-responsive" src="images/home_banner.png"  style="height: 20vh; width: 40vw; ">  
+    	
+    <!--  <span class="h3 text-dark"> <br> <span class="h1"> Bodoland Territorial Council <br> Financial Management Information System </span> </span> -->
+    
+    </div>
+    <div class="col-md-2 mr-4">
+    
+      <img  class="img-responsive" src="images/ashoka_stambha1.png"  height="180vh">
+    </div>
+    
+    </div>
+   <!--  <span>  <img  class="img-responsive" src="images/logo.png"  height="220vh"> </span>   -->
+  <!-- <span>  <img  class="img-responsive" src="images/ashoka_stambha.png"  height="150vh"> </span> <br>   -->
+   
+   
+   
+  
+      <span class="h3 text-light"> <br> <br> <span class="h1">  <br>  </span> </span>
+      
+     
+     
+      
+      <div class="row" style="width: 100%;">
+        
+        	 
+        	 
+        	<!-- 
+        	<div class="col-md-12 d-flex align-items-stretch" >
+        	 -->
+        	
+        	<div class="col-md-4">
+        	
+            <div class="card" style=' background-color: rgba(0,0,0,0.5); '>
+              
+              
+              <div class="card border-0" id="notificationCard" style=' background-color: rgba(0,0,0,0.2);'>
+						<div class="card-header">
+							<span style="color: white; font-size: 25px;">Notifications</span>
+						</div>
+						<div class="card-body p-0 w-100" id="notificationCardBody">
+							
+								<marquee direction="up" scrolldelay="25" truespeed="truespeed"
+									onmouseover="this.stop()" onmouseout="this.start()"
+									scrollamount="1">
+
+									<table class="container-fluid">
+
+										
+											<tr>
+												<td class="text-left">
+													<div class="card bg-dark m-2 border-0 shadow-sm"
+														id="notificationContent">
+														<div class="card-body p-2"
+															style='color: white;'>
+															<div class="row mb-2">
+																<div class="col-12">
+																	
+																	Treasury Instruction
+																	  
+																		<a
+																			
+														href="getSupportDocument2?q=1bf6bcf5-e5c0-46ee-97cb-d562d0a116f9"
+																			
+																			target="blank"> Click here..</a>
+																	 
+																</div>
+															</div>
+															<div class="row">
+																<div class="col-12">
+																	<span
+																		class="card-subtitle text-light font-italic small">
+																		Notified on 14-03-2023
+																	</span>
+																</div>
+															</div>
+														</div>
+													</div>
+												</td>
+											</tr>
+										<tr>
+												<td class="text-left">
+													<div class="card bg-dark m-2 border-0 shadow-sm"
+														id="notificationContent">
+														<div class="card-body p-2"
+															style='color: white;'>
+															<div class="row mb-2">
+																<div class="col-12">
+																	
+																	Treasury Instruction
+																	  
+																		<a
+																			
+														href="getSupportDocument2?q=1bf6bcf5-e5c0-46ee-97cb-d562d0a116f9"
+																			
+																			target="blank"> Click here..</a>
+																	 
+																</div>
+															</div>
+															<div class="row">
+																<div class="col-12">
+																	<span
+																		class="card-subtitle text-muted font-italic small">
+																		Notified on 14-03-2023
+																	</span>
+																</div>
+															</div>
+														</div>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td class="text-left">
+													<div class="card bg-dark m-2 border-0 shadow-sm"
+														id="notificationContent">
+														<div class="card-body p-2"
+															style='color: white;'>
+															<div class="row mb-2">
+																<div class="col-12">
+																	
+																	FinAssam User Creation Template 
+																	  
+																		<a
+																			
+														href="getSupportDocument2?q=3a6083fc-2b80-484b-9dca-2193371cf45c"
+																			
+																			target="blank"> Click here..</a>
+																	 
+																</div>
+															</div>
+															<div class="row">
+																<div class="col-12">
+																	<span
+																		class="card-subtitle text-light font-italic small">
+																		Notified on 04-03-2023
+																	</span>
+																</div>
+															</div>
+														</div>
+													</div>
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="text-left">
+													<div class="card bg-dark m-2 border-0 shadow-sm"
+														id="notificationContent">
+														<div class="card-body p-2"
+															style='color: white;'>
+															<div class="row mb-2">
+																<div class="col-12">
+																	
+																	Constitution of "Cells" for secretarial assistance to the Additional SFC
+																	  
+																		<a
+																			
+														href="getSupportDocument2?q=99d86cd1-8a9c-45f3-ab8a-b943a1d9b03f"
+																			
+																			target="blank"> Click here..</a>
+																	 
+																</div>
+															</div>
+															<div class="row">
+																<div class="col-12">
+																	<span
+																		class="card-subtitle text-light font-italic small">
+																		Notified on 04-03-2023
+																	</span>
+																</div>
+															</div>
+														</div>
+													</div>
+												</td>
+											</tr>
+										
+											
+
+									</table>
+
+								</marquee>
+							
+							
+
+						</div>
+					</div>
+              
+                </div>
+                </div>
+                
+                <!-- test -->
+             
+                <div class="col-md-4 mt-4"></div>
+                
+                <div class="col-md-4">
+                <div class="card" style=' background-color: rgba(0,0,0,0.5); ' >
+                <div class="card-header">
+							<span style="color: white; font-size: 25px;">Login</span>
+						</div>
+              <div class="card-body" >
+        	
+                      
+                    <form th:action="@{/login}" method="post">
+                        
+                        
+                        <label class="text-light float-start"> Username </label>
+                        <div class="input-group mb-3">
+                        	
+                            <input type="text" class="form-control bg-dark text-light" name="username" required placeholder="Enter your Username">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                   &nbsp;  <span class="fa fa-user">   </span>
+                                </div>
+                            </div>
+                        </div>
+                        <label class="text-light float-start"> Password </label>
+                        <div class="input-group mb-3">
+                            <input type="password" name="password" class="form-control bg-dark text-light" required placeholder="Enter the Password">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                  &nbsp;  <span class="fa fa-key"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-row mb-2">
+										<div class="col">
+											<div class="input-group">
+											
+												
+												<div class="input-group-prepend">
+													<label style="cursor: pointer;" class="input-group-text reloadCaptcha" for="captcha">  &nbsp; <img
+														id="captchaIdentifier" alt="..." th:src="@{/captcha/getCaptcha}">
+														
+														
+														
+													</label>
+													
+													
+												</div>
+												
+												
+												<input type="text" name="captcha" class="form-control  bg-dark text-light" required placeholder="Enter the Captcha">
+												
+												 
+												<div class="input-group-prepend">
+												
+												<span   style='background: rgba(59,187,179,1); color: #fff; cursor: pointer;'
+														class="reloadCaptcha fa fa-refresh input-group-text  text-light pb-2 pt-2">  Reload</span>
+												
+												</div>
+												
+												
+											</div>
+										</div>
+									</div>
+
+
+						<div class="form-row mb-3 mt-4">
+										<div class="col">
+											<div class="w-100 text-center">
+												<span class=" font-weight-bold text-danger alert alert-danger"
+													th:if='${param.error}'
+													th:switch="${param.error[0]}">
+													<span th:case="'1'"> <b> !!! Invalid Session - Click 
+														<a class="active" th:href="@{/login}" >Here</a> 
+														to Refresh the Page !!! </b>
+													</span>
+					
+													<span th:case="'2'"><b>!!! Wrong Captcha - Click 
+														<a class="active reloadCaptcha" >Here</a>
+														to Refresh the Captcha !!! </b>
+													</span>
+													<span th:case="'3'"><b> !!! Username not Registered / User has been Deactivated !!! </b></span>
+													<span th:case="'4'"><b> !!! No User has been allotted to the Seat !!! </b></span>
+													<span th:case="'5'"><b> !!! Incorrect Password - Please Type the Correct Password !!! </b></span>
+													
+												</span>
+											</div>
+										</div>
+									</div>
+									
+					<div class="form-row mb-3 mt-4">
+										<div class="col">
+											<div class="w-100 text-center">
+												<span class="pb-2 font-weight-bold text-success alert alert-success"
+													th:if='${param.logout}'
+													th:switch="${param.logout[0]}">
+													<span th:case="'1'" ><b>*** You have been Logged out Successfully ***</b></span>
+													<span th:case="'2'" ><b>*** Password Updated Successfully - Please Login Again ***</b></span>
+													
+												</span>
+											</div>
+										</div>
+									</div>
+
+
+                        
+                        <div class="form-button mt-3 mb-2">
+										<input type="submit"  style='background: rgba(59,187,179,1); color: #fff;'  value="Login" class="btn">
+						</div>
+                        
+                    </form>
+              						
+            		
+            				
+            						
+                   
+                    </div>
+                </div>
+                
+                
+                <!-- test -->
+                    
+                </div>
+                
+                </div>
+    </div>
+  </section>
+   	
+    <header id="header" class="d-flex align-items-center">
+	
+	
+	
+    <div class="container-fluid d-flex align-items-center justify-content-lg-between">
+
+      <h1 class="logo me-auto me-lg-0 text-light"><b>BTC FMIS</b></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a class="nav-link scrollto active" href="#hero"><b>Home</b></a></li>
+          <li><a class="nav-link scrollto" href="#about"><b>Modules</b></a></li>
+      <!--     <li><a class="nav-link scrollto" href="#login">Login</a></li>
+          <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
+          <li><a class="nav-link scrollto" href="#team">Team</a></li>
+          <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#">Drop Down 1</a></li>
+              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
+                <ul>
+                  <li><a href="#">Deep Drop Down 1</a></li>
+                  <li><a href="#">Deep Drop Down 2</a></li>
+                  <li><a href="#">Deep Drop Down 3</a></li>
+                  <li><a href="#">Deep Drop Down 4</a></li>
+                  <li><a href="#">Deep Drop Down 5</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Drop Down 2</a></li>
+              <li><a href="#">Drop Down 3</a></li>
+              <li><a href="#">Drop Down 4</a></li>
+            </ul>
+          </li>  -->
+          <li><a class="nav-link scrollto" href="#contact"><b>Contact</b></a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+<!--
+      <div class="header-social-links d-flex align-items-center">
+      
+      </div>
+-->
+    </div>
+  </header><!-- End Header -->
+   	<main id="main">
+
+    <!-- ======= About Section ======= -->
+    
+    
+  <!--    <section id="counts" class="counts">
+      <div class="container">
+
+        <div class="row counters">
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
+            <p>Clients</p>
+          </div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
+            <p>Projects</p>
+          </div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1" class="purecounter"></span>
+            <p>Hours Of Support</p>
+          </div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1" class="purecounter"></span>
+            <p>Hard Workers</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>   -->
+    
+    <section id="about" class="our-values">
+      <div class="container">
+<div class="section-title">
+          <h2>Modules</h2>
+          
+        </div>
+        
+        <div class="row">
+					
+
+					<div
+						class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0"
+						data-aos="zoom-in" data-aos-delay="200">
+						 <div class="card-body">
+							<div class="icon">
+								<img style='height:50px; width:50px; margin-right: auto; margin-left:auto; display: block;' src="assets/img/budget_allocation.png">
+							</div>
+							<h4 style='text-align: center;'>
+								<a style="color: #ff7f5d;" class="card-title" href="">Budget Allocation &amp; Distribution</a>
+							</h4>
+							<p class="card-text">Facilitates the distribution of the approved budget at the
+								beginning of the financial year, in order to provide spending
+								authority to budgetary units in the amount allowed by the
+								budget.</p>
+						</div>
+					</div>
+
+					<div
+						class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0"
+						data-aos="zoom-in" data-aos-delay="300">
+					 
+						 <div class="card-body">
+							<div class="icon" >
+								<img style='height:50px; width:50px; margin-right: auto; margin-left:auto; display: block;' src="assets/img/aa_fs_ts.png">
+							</div>
+							<h4 style='text-align: center;'>
+								<a style="color: #ff7f5d;" class="card-title" href="">AA/ TS/ FS</a>
+							</h4>
+							<p class="card-text" >Facilitates the preparation and submission of request for
+								Administrative Approvals, Technical and Financial Sanctions. It
+								also manages the First salary processing.</p>
+						</div>
+						 
+					</div>
+					
+					
+					<div
+						class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0"
+						data-aos="zoom-in" data-aos-delay="300">
+					 
+						 <div class="card-body">
+							<div class="icon" >
+								<img style='height:50px; width:50px; margin-right: auto; margin-left:auto; display: block;' src="assets/img/aa_fs_ts.png">
+							</div>
+							<h4 style='text-align: center;'>
+								<a style="color: #ff7f5d;" class="card-title" href="">Help Desk Management</a>
+							</h4>
+							<p class="card-text" >To manage the end user queries related to various modules 
+								available in FinAssam.</p>
+						</div>
+						 
+					</div>
+					
+					
+					
+        </div>
+        
+        
+        
+
+      </div>
+    </section>
+     
+   
+    <section id="contact" class="our-values">
+ 
+ 
+ 
+      <div class="container">
+      
+     
+<div class="section-title">
+
+	
+          <h2>Contact</h2>
+          
+        </div>  
+        
+        <div class="row">
+					
+					
+					
+					
+					<div
+						class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0"
+						data-aos="zoom-in" data-aos-delay="200">
+						 <div class="card-body">
+							<div class="icon">
+								<img style='height:50px; width:50px; margin-right: auto; margin-left:auto; display: block;' src="assets/img/budget_allocation.png">
+							</div>
+							<h4 style='text-align: center;'>
+								<a style="color: #ff7f5d;" class="card-title" href="">Help Desk</a>
+							</h4>
+							<p class="card-text">via TSG After Login</p>
+						</div>
+					</div>
+
+					<div
+						class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0"
+						data-aos="zoom-in" data-aos-delay="300">
+					 
+						 <div class="card-body">
+							<div class="icon" >
+								<img style='height:50px; width:50px; margin-right: auto; margin-left:auto; display: block;' src="assets/img/aa_fs_ts.png">
+							</div>
+							<h4 style='text-align: center;'>
+								<a style="color: #ff7f5d;" class="card-title" href="">eMail Us</a>
+							</h4>
+							<p class="card-text" >doatpiuaspire@gmail.com</p>
+						</div>
+						 
+					</div>
+					
+					
+					<div
+						class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0"
+						data-aos="zoom-in" data-aos-delay="300">
+					 
+						 <div class="card-body">
+							<div class="icon" >
+								<img style='height:50px; width:50px; margin-right: auto; margin-left:auto; display: block;' src="assets/img/help_desk.png">
+							</div>
+							<h4 style='text-align: center;'>
+								<a style="color: #ff7f5d;" class="card-title" href="">Call Us</a>
+							</h4>
+							<p class="card-text" >0361-2232621</p>
+						</div>
+						 
+					</div>  
+					
+					
+					
+        </div>
+        
+        
+        
+     </div>  
+    </section>
+    
+     
+    
+   
+     
+    
+    </main>
+   	
+    <footer id="footer">
+
+    <div class="footer-top">
+
+      <div class="container" style="height:10vh;">
+
+        <div class="row  justify-content-center">
+          <div class="col-lg-6">
+            <h3>Footer</h3>
+           
+          </div>
+        </div>
+
+         
+
+        <div class="social-links">
+          <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+          <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+          <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+          <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+          <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container footer-bottom clearfix">
+      <div class="copyright">
+        &copy; Copyright <strong><span>BTC</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/valera-free-bootstrap-theme/ -->
+        Designed by DoAT-Aspire 
+      </div>
+    </div>
+  </footer>
+  
+   <div id="preloader1">
+			<div id="container" class="container-preloader" style="background: rgb(34,193,195) linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,139,45,1) 100%)">
+				<div class="animation-preloader">
+				<img  class="img-responsive" src="images/logo.png" style="height: 30vh; margin-left: auto; margin-right: auto; display: block;">  
+				<br>
+				<!-- 
+					<div class="spinner">
+					
+					</div>
+					 -->
+					<div class="txt-loading">
+						<span preloader-text="B" class="characters">B</span>
+						
+						<span preloader-text="T" class="characters">T</span>
+						
+						<span preloader-text="C" class="characters">C</span>
+						
+						<span preloader-text="F" class="characters">F</span>
+						
+						<span preloader-text="M" class="characters">M</span>
+						
+						<span preloader-text="I" class="characters">I</span>
+						
+						<span preloader-text="S" class="characters">S</span>
+					</div>
+				</div>	
+				<div class="loader-section section-left"></div>
+				<div class="loader-section section-right"></div>
+			</div>
+		</div>	 
+ 
+        <script th:src="@{/js/main.js}"></script> 
+         <script th:src="@{/assets/vendor/purecounter/purecounter_vanilla.js}"></script>
+    <script th:src="@{/assets/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script> 
+  <script th:src="@{/assets/vendor/glightbox/js/glightbox.min.js}"></script>
+  <script th:src="@{/assets/vendor/isotope-layout/isotope.pkgd.min.js}"></script>
+  <script th:src="@{/assets/vendor/swiper/swiper-bundle.min.js}"></script>
+  <script th:src="@{/assets/vendor/php-email-form/validate.js}"></script> 
+       <script>
+       
+       $(document).on('click', '.reloadCaptcha', function(event) {
+			$("input[name='captcha']").val("");
+			$("#captchaIdentifier").attr("src", "/captcha/getCaptcha?id=" + new Date().getTime());
+		});
+       
+       $(document).ready(function () {
+           window.history.forward();
+       });
+       
+       </script>
+       
+       
+       <script>
+       $(document).ready(function() {
+    	  
+    	   var url = window.location.href;
+    	   
+    	   if(url.includes("error")) {
+    	   
+  setTimeout(function() {
+    $('#container').addClass('loaded');
+    // Once the container has finished, the scroll appears
+    if ($('#container').hasClass('loaded')) {
+      // It is so that once the container is gone, the entire preloader section is deleted
+      $('#preloader1').delay(0).queue(function() {
+        $(this).remove();
+      });}
+  }, 0);
+  
+    	   }
+    	   
+    	   if(!url.includes("error")) {
+        	   
+    		   setTimeout(function() {
+    		     $('#container').addClass('loaded');
+    		     // Once the container has finished, the scroll appears
+    		     if ($('#container').hasClass('loaded')) {
+    		       // It is so that once the container is gone, the entire preloader section is deleted
+    		       $('#preloader1').delay(1000).queue(function() {
+    		         $(this).remove();
+    		       });}
+    		   }, 1000);
+    		   
+    		     	   }
+    	   
+    	   
+       });
+       
+       </script>   
+</body>
+   
+   
+   
+</html>
